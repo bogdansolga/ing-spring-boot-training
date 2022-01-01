@@ -1,0 +1,26 @@
+package com.ing.springboot.training.d01.s04.config;
+
+import com.ing.springboot.training.d01.s04.repository.ProductRepository;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * A simple Spring configuration, which exposes two {@link ProductRepository} {@link Bean}s
+ *
+ * @author bogdan.solga
+ */
+@Configuration
+@ComponentScan(basePackages = "com.ing.springboot.training.d01.s04") // --> implicit config
+public class BeanQualifyingConfig {
+
+    @Bean(name = ProductRepository.MY_SQL_REPO_BEAN_NAME) // --> explicit config
+    public ProductRepository productRepository() {
+        return new ProductRepository("MySQL");
+    }
+
+    @Bean(name = ProductRepository.ORACLE_REPO_BEAN_NAME)
+    public ProductRepository oracleProductRepository() {
+        return new ProductRepository("Oracle");
+    }
+}

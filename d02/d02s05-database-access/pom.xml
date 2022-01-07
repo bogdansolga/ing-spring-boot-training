@@ -17,5 +17,6 @@
         <module>d02s05e01-embedded-database</module>
         <module>d02s05e02-real-database</module>
         <module>d02s05e03-custom-datasource-config</module>
+        <module>d02s05e04-jdbc-template</module>
     </modules>
 </project>

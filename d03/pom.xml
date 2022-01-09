@@ -14,6 +14,7 @@
     </parent>
 
     <modules>
+        <module>d03s01-database-access-second-part</module>
         <module>d03s02-spring-security</module>
         <module>d03s03-unit-and-integration-testing</module>
     </modules>

@@ -1,7 +1,7 @@
 # the name of the current app
 spring:
   application:
-    name: spring-boot-jdbc-template-usage
+    name: spring-boot-real-database-connection-demo
 
   # DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
   datasource:
@@ -9,7 +9,22 @@ spring:
     name: spring_boot
     password: spring_boot_admin
     username: spring_boot_admin
-    url: jdbc:postgresql://localhost:5432/${spring.datasource.name}
+    url: jdbc:postgresql://192.168.1.116:5432/${spring.datasource.name}
+
+  # JPA properties - JpaProperties
+  jpa:
+    hibernate:
+      ddl-auto: create # use it carefully, for development only
+
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: false
+        temp:
+          use_jdbc_metadata_defaults: false
+    open-in-view: false
 
   # indent the returned JSON responses
   jackson:

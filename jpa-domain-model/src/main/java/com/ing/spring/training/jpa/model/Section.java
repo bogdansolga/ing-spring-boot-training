@@ -16,7 +16,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "Section")
+@Table(name = "section")
 public class Section extends AbstractEntity {
 
     @Id
@@ -29,7 +29,7 @@ public class Section extends AbstractEntity {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "storeId")
+    @JoinColumn(name = "store_id")
     private Store store;
 
     // 'mappedBy' tells the persistence provider that the join column is in the Product table

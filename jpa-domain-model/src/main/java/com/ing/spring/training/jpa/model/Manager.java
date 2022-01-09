@@ -13,7 +13,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "Manager")
+@Table(name = "manager")
 public class Manager extends AbstractEntity {
 
     @Id
@@ -24,7 +24,7 @@ public class Manager extends AbstractEntity {
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
-            name = "StoreManager",
+            name = "store_manager",
             joinColumns = {
                     // navigating from the 'StoreManager' to the 'Manager'
                     @JoinColumn(name = "manager_id", referencedColumnName = "id")

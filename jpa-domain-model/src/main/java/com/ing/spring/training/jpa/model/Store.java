@@ -27,8 +27,7 @@ public class Store extends AbstractEntity {
 
     @Id
     @GeneratedValue(generator = "store_sequence_generator")
-    @SequenceGenerator(name = "store_sequence_generator",
-            sequenceName="store_sequence", allocationSize = 1)
+    @SequenceGenerator(name = "store_sequence_generator", sequenceName="store_sequence", allocationSize = 1)
     private int id;
 
     @Column(nullable = false, length = 50, insertable = true)
@@ -47,7 +46,7 @@ public class Store extends AbstractEntity {
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
-            name = "StoreManager",
+            name = "store_manager",
             joinColumns = {
                 // navigating from the 'StoreManager' to the 'Store'
                 @JoinColumn(name = "store_id", referencedColumnName = "id")

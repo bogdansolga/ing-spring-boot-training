@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "StoreManager")
+@Table(name = "store_manager")
 @SuppressWarnings("unused")
 public class StoreManager extends AbstractEntity {
 

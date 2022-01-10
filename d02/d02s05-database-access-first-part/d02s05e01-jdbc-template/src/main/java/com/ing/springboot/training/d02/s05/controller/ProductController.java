@@ -1,6 +1,6 @@
-package com.ing.springboot.training.d03.s01.controller;
+package com.ing.springboot.training.d02.s05.controller;
 
-import com.ing.springboot.training.d03.s01.service.ProductService;
+import com.ing.springboot.training.d02.s05.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

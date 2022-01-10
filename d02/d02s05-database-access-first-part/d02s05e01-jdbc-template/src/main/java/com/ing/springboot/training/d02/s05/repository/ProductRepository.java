@@ -1,4 +1,4 @@
-package com.ing.springboot.training.d03.s01.repository;
+package com.ing.springboot.training.d02.s05.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,6 +17,6 @@ public class ProductRepository {
     }
 
     public Integer getProductsWithMinPrice(final int minPrice) {
-        return jdbcTemplate.queryForObject("SELECT * FROM product WHERE price > ?", Integer.class, minPrice);
+        return jdbcTemplate.queryForObject("SELECT count(*) FROM product WHERE price > ?", Integer.class, minPrice);
     }
 }

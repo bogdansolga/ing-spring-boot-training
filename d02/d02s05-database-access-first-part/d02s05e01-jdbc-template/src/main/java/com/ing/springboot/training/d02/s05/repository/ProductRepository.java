@@ -12,8 +12,8 @@ public class ProductRepository {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public ProductRepository(final DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    public ProductRepository(final JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     public Integer getProductsWithMinPrice(final int minPrice) {

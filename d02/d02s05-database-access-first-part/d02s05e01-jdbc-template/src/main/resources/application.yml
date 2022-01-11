@@ -15,6 +15,10 @@ spring:
     serialization:
       INDENT_OUTPUT: true
 
+  h2:
+    console:
+      enabled: true
+
   # the database type
   sql:
     init:

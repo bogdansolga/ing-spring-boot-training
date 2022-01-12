@@ -73,6 +73,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // registering the post auth handlers
         // they are registered as beans in order to be able to inject other dependencies in them (if needed)
         http.formLogin()
+            //.loginPage("login.html")
             .successHandler(successfulAuthHandler())
             .failureHandler(failedAuthHandler())
             .defaultSuccessUrl("/")
@@ -107,8 +108,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers(IGNORED_ENDPOINTS);
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
+    private PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(10);
     }
 

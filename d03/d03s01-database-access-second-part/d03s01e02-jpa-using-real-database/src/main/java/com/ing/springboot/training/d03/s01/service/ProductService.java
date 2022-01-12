@@ -3,9 +3,13 @@ package com.ing.springboot.training.d03.s01.service;
 import com.ing.spring.training.jpa.model.Product;
 import com.ing.springboot.training.d03.s01.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ProductService {
@@ -48,5 +52,11 @@ public class ProductService {
 
     public void delete(final int id) {
         productRepository.deleteById(id);
+    }
+
+    public List<Product> getProductsPage(int pageNumber, int pageSize) {
+        return productRepository.findAll(Pageable.ofSize(pageSize)
+                                                 .withPage(pageNumber))
+                                .orElse(new ArrayList<>());
     }
 }

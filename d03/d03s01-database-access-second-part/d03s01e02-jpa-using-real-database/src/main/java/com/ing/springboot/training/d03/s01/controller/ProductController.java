@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.Set;
+
 /**
  * A Spring {@link RestController} used to showcase the modeling of a REST controller for CRUD operations
  *
@@ -92,5 +95,10 @@ public class ProductController {
     public ResponseEntity<?> delete(@PathVariable final int id) {
         productService.delete(id);
         return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @GetMapping("/page/{pageNumber}/{pageSize}")
+    public List<Product> getProductsPage(@PathVariable int pageNumber, @PathVariable int pageSize) {
+        return productService.getProductsPage(pageNumber, pageSize);
     }
 }

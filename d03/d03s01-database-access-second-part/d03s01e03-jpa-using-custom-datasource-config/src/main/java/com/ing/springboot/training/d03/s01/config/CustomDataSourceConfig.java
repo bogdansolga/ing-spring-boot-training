@@ -3,11 +3,11 @@ package com.ing.springboot.training.d03.s01.config;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -49,7 +49,7 @@ public class CustomDataSourceConfig {
     @Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
 
-    @Primary
+    //@Primary
     @Bean
     public javax.sql.DataSource hikariConnectionPool() {
         final HikariConfig hikariConfig = new HikariConfig();
@@ -73,10 +73,10 @@ public class CustomDataSourceConfig {
         final HikariConfig hikariConfig = new HikariConfig();
 
         hikariConfig.setPoolName("hikari-second-connection-pool");
-        hikariConfig.setMaximumPoolSize(AVAILABLE_PROCESSORS * 2);
-        hikariConfig.setMinimumIdle(AVAILABLE_PROCESSORS / 2);
+        hikariConfig.setMaximumPoolSize(AVAILABLE_PROCESSORS);
+        hikariConfig.setMinimumIdle(AVAILABLE_PROCESSORS / 4);
         hikariConfig.setConnectionTimeout(30000);
-        hikariConfig.setIdleTimeout(600000);
+        hikariConfig.setIdleTimeout(60000);
         hikariConfig.setMaxLifetime(120000);
         hikariConfig.setJdbcUrl(url);
         hikariConfig.setUsername(userName);
@@ -104,17 +104,17 @@ public class CustomDataSourceConfig {
 
     private HibernateJpaVendorAdapter vendorAdaptor() {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setShowSql(true);
+        vendorAdapter.setShowSql(false);
         return vendorAdapter;
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(final DataSource dataSource) {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(@Qualifier("anotherConnectionPool") final DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setJpaVendorAdapter(vendorAdaptor());
         entityManagerFactoryBean.setDataSource(dataSource);
         entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
-        entityManagerFactoryBean.setPackagesToScan("");
+        entityManagerFactoryBean.setPackagesToScan("com.ing.spring.training.jpa.model");
         entityManagerFactoryBean.setJpaProperties(jpaHibernateProperties());
 
         return entityManagerFactoryBean;

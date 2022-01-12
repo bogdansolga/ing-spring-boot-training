@@ -20,6 +20,10 @@ spring:
 
   jpa:
     open-in-view: false
+    hibernate:
+      # safe to be used for in-memory databases
+      ddl-auto: create-drop
+
     properties:
       hibernate:
         show_sql: true
